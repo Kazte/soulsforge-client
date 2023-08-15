@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "../../configurations/configs";
-import { CharacterEldenRing } from "../../models/characters/character-eldenring.model";
+// import { CharacterEldenRing } from "../../models/characters/character-eldenring.model";
 
 const baseUrl = API_BASE_URL + '/character-eldenring';
 
@@ -41,7 +41,7 @@ export const EldenRingService = {
 
 		return result;
 	},
-	createCharacter: async (character: CharacterEldenRing) => { throw new Error("Not implemented"); },
-	updateCharacter: async (id: string, character: CharacterEldenRing) => { throw new Error("Not implemented"); },
-	deleteCharacter: async (id: string) => { throw new Error("Not implemented"); },
+	// createCharacter: async (character: CharacterEldenRing) => { throw new Error("Not implemented"); },
+	// updateCharacter: async (id: string, character: CharacterEldenRing) => { throw new Error("Not implemented"); },
+	// deleteCharacter: async (id: string) => { throw new Error("Not implemented"); },
 }

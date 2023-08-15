@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { EldenRingService } from "../../../services/characters/elden-ring.service";
 import { CharacterEldenRing } from "../../../models/characters/character-eldenring.model";
-import { Card, Divider } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import CardCharacterList from "../../../components/characters/CardCharacterList";
 
 export default function ProfilePage() {

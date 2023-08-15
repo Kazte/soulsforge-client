@@ -1,17 +1,14 @@
-import { Divider, Input, Link as LinkUI } from "@nextui-org/react";
-import { PrivateRoutes, PublicRoutes } from "../../../models/routes";
-import { Link, useNavigate } from "react-router-dom";
+import { Divider, Input } from "@nextui-org/react";
+import { PublicRoutes } from "../../../models/routes";
+import { useNavigate } from "react-router-dom";
 import { KButton } from "../../../components/ui/KButton";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { authServiceInstance } from "../../../services/auth/auth.service";
-import { createUser } from "../../../redux/states/user";
 import KLink from "../../../components/ui/KLink";
 
 export default function RegisterPage() {
 
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState(false);
@@ -19,14 +16,14 @@ export default function RegisterPage() {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const email = e.currentTarget[0].value;
-		const username = e.currentTarget[1].value;
-		const password = e.currentTarget[2].value;
+		const email = e.currentTarget[0] as HTMLInputElement;
+		const username = e.currentTarget[1] as HTMLInputElement;
+		const password = e.currentTarget[2] as HTMLInputElement;
 
 		setLoading(true);
 
 		try {
-			const response = await authServiceInstance.register(username, email, password);
+			const response = await authServiceInstance.register(username.value, email.value, password.value);
 
 			if (response.result) {
 				setSuccess(true);

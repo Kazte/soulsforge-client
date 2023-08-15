@@ -17,13 +17,13 @@ export default function LoginPage() {
 	const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const email = e.currentTarget[0].value;
-		const password = e.currentTarget[1].value;
+		const email = e.currentTarget[0] as HTMLInputElement
+		const password = e.currentTarget[1] as HTMLInputElement
 
 		setLoading(true);
 
 		try {
-			const response = await authServiceInstance.login(email, password);
+			const response = await authServiceInstance.login(email.value, password.value);
 
 			if (response.result) {
 				dispatch(createUser({
