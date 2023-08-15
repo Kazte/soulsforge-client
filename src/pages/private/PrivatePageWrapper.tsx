@@ -1,12 +1,12 @@
 import { Route, Navigate } from "react-router-dom";
-import { PrivateRoutes } from "../../models/routes";
+import { PrivateRoutes, PublicRoutes } from "../../models/routes";
 import { RoutesWithNotFound } from "../common";
 import LogoutPage from "./user/LogoutPage";
 
 export default function PrivatePageWrapper() {
 	return (
 		<RoutesWithNotFound>
-			<Route path="/" element={<Navigate to={PrivateRoutes.PROFILE} />} />
+			<Route path="/" element={<Navigate to={PublicRoutes.PROFILE} />} />
 			<Route path={PrivateRoutes.LOGOUT} element={<LogoutPage />} />
 
 			{/* <Route path={`${PrivateRoutes.NOTES}/:guid`} element={<NoteDetailPage />} /> */}

@@ -1,6 +1,5 @@
 import { Card, CardBody, CardFooter, CardHeader, Chip, Divider } from "@nextui-org/react"
 import { CharacterBase } from "../../models/characters/character-base.model"
-import KLink from "../ui/KLink"
 import { useNavigate } from "react-router-dom"
 import { PublicRoutes } from "../../models/routes"
 

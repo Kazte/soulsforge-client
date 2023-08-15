@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { PrivateRoutes, PublicRoutes } from '../models/routes';
+import { PublicRoutes } from '../models/routes';
 import { UserKey, resetUser } from '../redux/states/user';
 import { AppStore } from '../redux/store';
 import { authServiceInstance } from '../services/auth/auth.service';
