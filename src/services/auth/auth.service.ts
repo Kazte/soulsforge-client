@@ -27,7 +27,6 @@ class AuthService implements AuthRepository {
 			},
 			body: JSON.stringify({ email, password })
 		});
-		console.log(response);
 		const result = await response.json();
 		return result;
 	}

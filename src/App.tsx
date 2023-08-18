@@ -1,46 +1,46 @@
-import { BrowserRouter, Navigate, Route } from "react-router-dom"
-import { Footer, Header } from "./ui"
-import { RoutesWithNotFound } from "./pages/common"
-import { EldenRingCharPage, EldenRingPage, LoginPage, ProfilePage, RegisterPage } from "./pages/public"
-import { Provider } from "react-redux"
-import store from "./redux/store"
+import { Provider, useSelector } from "react-redux"
+import { BrowserRouter, Route, Navigate } from "react-router-dom"
 import AuthGuard from "./guards/auth.guard"
-import PrivatePageWrapper from "./pages/private/PrivatePageWrapper"
 import { PublicRoutes } from "./models/routes"
+import { RoutesWithNotFound, LoginPage, RegisterPage, ProfilePage, EldenRingPage, EldenRingCharPage, PrivatePageWrapper } from "./pages"
+import { Header, Footer } from "./ui"
+import { AppStore } from "./redux/store"
+
 
 function App() {
 
+	const { darkMode } = useSelector((state: AppStore) => state.page)
+
+
+
 	return (
-		<Provider store={store}>
-			<div className="dark text-foreground bg-background flex flex-col min-h-screen">
+		<div className={`text-foreground bg-background flex flex-col min-h-screen ${darkMode ? 'dark' : ''}`}>
+			<BrowserRouter>
 
-				<BrowserRouter>
+				<Header />
 
-					<Header />
+				<main className="flex-1 flex flex-col m-4">
+					<RoutesWithNotFound>
+						<Route path={`/${PublicRoutes.HOME}`} element={<Navigate to={PublicRoutes.HOME} />} />
+						<Route path={`/${PublicRoutes.LOGIN}`} element={<LoginPage />} />
+						<Route path={`/${PublicRoutes.REGISTER}`} element={<RegisterPage />} />
+						<Route path={`/${PublicRoutes.PROFILE}/:id`} element={<ProfilePage />} />
 
-					<main className="flex-1 flex flex-col m-4">
-						<RoutesWithNotFound>
-							<Route path={`/${PublicRoutes.HOME}`} element={<Navigate to={PublicRoutes.HOME} />} />
-							<Route path={`/${PublicRoutes.LOGIN}`} element={<LoginPage />} />
-							<Route path={`/${PublicRoutes.REGISTER}`} element={<RegisterPage />} />
-							<Route path={`/${PublicRoutes.PROFILE}/:id`} element={<ProfilePage />} />
-
-							<Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}`} element={<EldenRingPage />} />
-							<Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}/:id`} element={<EldenRingCharPage />} />
+						<Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}`} element={<EldenRingPage />} />
+						<Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}/:id`} element={<EldenRingCharPage />} />
 
 
-							<Route element={<AuthGuard privateValidation={true} />} >
-								<Route path="/*" element={<PrivatePageWrapper />} />
-							</Route>
+						<Route element={<AuthGuard privateValidation={true} />} >
+							<Route path="/*" element={<PrivatePageWrapper />} />
+						</Route>
 
-						</RoutesWithNotFound>
-					</main>
+					</RoutesWithNotFound>
+				</main>
 
-					<Footer />
+				<Footer />
 
-				</BrowserRouter>
-			</div>
-		</Provider>
+			</BrowserRouter>
+		</div>
 	)
 }
 

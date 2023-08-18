@@ -49,7 +49,7 @@ export default function LoginPage() {
 			<div className="flex flex-col gap-4 p-4 bg-content1 rounded-sm shadow-sm w-3/4 sm:w-[20rem]">
 				<h1 className="text-4xl font-bold text-center">Login</h1>
 				<Divider />
-				<form autoComplete="off" className="flex flex-col justify-center items-center gap-2" onSubmit={handleOnSubmit}>
+				<form className="flex flex-col justify-center items-center gap-2" onSubmit={handleOnSubmit}>
 
 					<Input size="sm" type="email" label="Email" />
 					<Input size="sm" type="password" label="Password" />

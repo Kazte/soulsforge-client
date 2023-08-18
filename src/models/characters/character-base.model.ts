@@ -4,6 +4,8 @@ import { User } from "../user.model";
 export interface CharacterBase {
 	_id: number,
 	name: string,
+	description: string,
+	imageUrl: string,
 	user: User,
 	game: CharacterGame,
 }

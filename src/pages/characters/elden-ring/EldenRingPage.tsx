@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
-import { CharacterEldenRing } from "../../../../models/characters/character-eldenring.model";
-import CardCharacterList from "../../../../components/characters/CardCharacterList";
 import { Spinner } from "@nextui-org/react";
-import { EldenRingService } from "../../../../services/characters/elden-ring.service";
+import { useState, useEffect } from "react";
+import CardCharacterList from "../../../components/characters/CardCharacterList";
+import { CharacterEldenRing } from "../../../models/characters/character-eldenring.model";
+import { EldenRingService } from "../../../services/characters/elden-ring.service";
+
 
 export default function EldenRingPage() {
 	const [characters, setCharacters] = useState<CharacterEldenRing[]>([])
@@ -17,8 +18,6 @@ export default function EldenRingPage() {
 
 		try {
 			const response = await EldenRingService.getCharacters();
-
-			console.log(response);
 
 			if (response) {
 				setCharacters(response)

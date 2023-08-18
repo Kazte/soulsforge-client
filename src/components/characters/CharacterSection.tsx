@@ -7,10 +7,10 @@ export interface Prop {
 
 export default function CharacterSection({ title, children }: Prop) {
 	return (
-		<div className="flex flex-col items-center justify-center bg-content4 m-2">
+		<div className="flex flex-col items-center justify-center bg-content4 m-2 h-[55px]">
 			<h2>{title}</h2>
 			<Divider />
-			<span>{children}</span>
+			<span className="w-full h-full text-center">{children}</span>
 		</div>
 	)
 }

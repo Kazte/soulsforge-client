@@ -16,7 +16,7 @@ export default function CardCharacterList({ character }: Props) {
 
 
 	return (
-		<Card shadow="sm" className="max-w-[400px] min-w-[200px]" isPressable disableRipple onPress={handleClick}>
+		<Card shadow="sm" className="max-w-[400px] min-w-[200px] hover:scale-105 transition duration-300 ease-in-out cursor-pointer" isPressable disableRipple onPress={handleClick}>
 			<Chip color="primary" className="m-2 self-end">
 				{character.game}
 			</Chip>

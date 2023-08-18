@@ -7,7 +7,7 @@ export default function CharacterSectionContainer({ sectionTitle, children }: Pr
 	return (
 		<section className="bg-content2 border-2 border-content3">
 			<h2 className="text-center">{sectionTitle}</h2>
-			<div className="flex flex-wrap justify-center bg-content4">
+			<div className="flex flex-wrap justify-start gap-2 items-stretch bg-content4">
 				{children}
 			</div >
 		</section >

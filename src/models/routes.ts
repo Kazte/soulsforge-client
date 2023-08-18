@@ -10,4 +10,6 @@ export const PublicRoutes = {
 export const PrivateRoutes = {
 	PRIVATE: 'private',
 	LOGOUT: 'logout',
+	CHARACTER_EDIT: 'character/edit',
+	CHARACTER_DELETE: 'character/delete',
 }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { PublicRoutes } from "../models/routes";
+
 import Nav from "./Nav";
+import { PublicRoutes } from "../../models/routes";
 
 export default function Header() {
 	return (

@@ -19,6 +19,25 @@ export default {
 						DEFAULT: "#E0273A",
 					}
 				},
+			},
+			light: {
+				colors: {
+					primary: {
+						DEFAULT: "#E0273A",
+					},
+					content1: {
+						DEFAULT: "#e4e4e7",
+					},
+					content2: {
+						DEFAULT: "#d4d4d8",
+					},
+					content3: {
+						DEFAULT: "#a1a1aa",
+					},
+					content4: {
+						DEFAULT: "#88888a",
+					},
+				},
 			}
 		}
 	})],

@@ -8,7 +8,7 @@ export interface UserInfo {
 }
 
 export interface User {
-	id: string;
+	_id: string;
 	username: string;
 	email: string;
 	characters_eldenRing: CharacterEldenRing[];

@@ -162,11 +162,22 @@ export interface CharacterEldenRing extends CharacterBase {
 
 
 
-export type CharacterEldenRing_Age = 'Young' | 'Mature' | 'Aged';
+export enum CharacterEldenRing_Age { 'Young', 'Mature', 'Aged' }
 
-export type CharacterEldenRing_BodyType = 'Type A' | 'Type B';
+export enum CharacterEldenRing_BodyType { 'Type A', 'Type B' }
 
-export type CharacterEldenRing_Muscle = 'Standard' | 'Muscular';
+export enum CharacterEldenRing_Muscle { 'Standard', 'Muscular' }
+
+// get all keys of CharacterEldenRing_Age enum
+export const CharacterEldenRing_AgeKeys = Object.keys(CharacterEldenRing_Age).filter(k => typeof CharacterEldenRing_Age[k as any] === "number");
+
+
+
+
+// get all keys of CharacterEldenRing_BodyType enum
+export const CharacterEldenRing_BodyTypeKeys = Object.keys(CharacterEldenRing_BodyType).filter(k => typeof CharacterEldenRing_BodyType[k as any] === "number");
+export const CharacterEldenRing_MuscleKeys = Object.keys(CharacterEldenRing_Muscle).filter(k => typeof CharacterEldenRing_Muscle[k as any] === "number");
+
 
 export type CharacterEldenRing_EyeConfiguration = {
 	irisSize: number,
