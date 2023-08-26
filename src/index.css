@@ -4,9 +4,18 @@
 
 @layer base {
 
-	input[type="number"]::-webkit-inner-spin-button,
-	input[type="number"]::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+
+#root {
+  scrollbar-gutter: stable;
+}
+
+* {
+  transition: background 0.2s;
 }

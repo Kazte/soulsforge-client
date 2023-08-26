@@ -1,52 +1,48 @@
-import { Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { Select, SelectItem } from "@nextui-org/react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Case, Default, Switch } from "../../ui";
 
 interface Props {
-	value: string
-	labelsMap: string[]
-	editing: boolean
-	onChange: (value: string) => void
+  value?: string
+  labelsMap: string[]
+  editing: boolean
+  onChange: (value: string) => void
 }
 
 export default function CharacterDropdown({ value, labelsMap, editing = false, onChange }: Props) {
+  const [selectedValue, setSelectedValue] = useState<string>(value ?? labelsMap[0]);
 
-	const [selected, setSelected] = useState<string>(labelsMap[0])
+  const handleOnChange = (v: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedValue(v.target.value);
+    onChange(v.target.value);
+  }
 
-	useEffect(() => {
-		setSelected(value);
-	}, [value])
+  return (
+    <div className="min-w-[150px]">
+      <Switch>
+        <Case condition={editing}>
+          <Select
+            items={labelsMap}
+            selectionMode="single"
+            defaultSelectedKeys={[value]}
+            className="max-w-lg"
+            labelPlacement="outside"
+            aria-labelledby="Select dropdown menu"
+            onChange={handleOnChange}
+          >
+            {
+              labelsMap.map((l) => (
+                <SelectItem key={l} value={l}>
+                  {l}
+                </SelectItem>
+              ))}
+          </Select>
+        </Case>
 
-	useEffect(() => {
-		console.log('selected', selected);
-	}, [selected])
-
-	const handleSelect = (label: string) => {
-		console.log('selected', label);
-		setSelected(label);
-		onChange(label);
-	}
-
-
-
-	return (
-		<Switch>
-			<Case condition={editing}>
-				<Dropdown placement="bottom-start">
-					<DropdownTrigger>
-						<Button>{selected}</Button>
-					</DropdownTrigger>
-					<DropdownMenu aria-label="Dropdown">
-						{labelsMap.map((label, index) => (
-							<DropdownItem key={index} onClick={() => handleSelect(label)}>{label}</DropdownItem>
-						))}
-					</DropdownMenu>
-				</Dropdown>
-			</Case>
-
-			<Default>
-				{value}
-			</Default>
-		</Switch>
-	)
+        <Default>
+          {selectedValue}
+        </Default>
+      </Switch>
+    </div>
+  )
 }

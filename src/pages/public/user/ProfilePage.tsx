@@ -7,80 +7,79 @@ import { User } from "../../../models/user.model";
 import { Case, Default, Switch } from "../../../ui";
 
 export default function ProfilePage() {
-	const params = useParams()
+  const params = useParams()
 
-	// TODO: CHANGE FOR USER
-	const [user, setUser] = useState<User | null>(null);
-	const [fetching, setFetching] = useState(false);
+  // TODO: CHANGE FOR USER
+  const [user, setUser] = useState<User | null>(null);
+  const [fetching, setFetching] = useState(false);
 
-	const userId = useMemo(() => {
-		return params.id;
-	}, [params])
+  const userId = useMemo(() => {
+    return params.id;
+  }, [params])
 
-	useEffect(() => {
-		fetchUserData();
-	}, [userId])
+  useEffect(() => {
+    fetchUserData();
+  }, [userId])
 
-	const fetchUserData = async () => {
-		// TODO: Change for route user
+  const fetchUserData = async () => {
+    // TODO: Change for route user
 
-		setFetching(true);
+    setFetching(true);
 
-		try {
-			if (!params.id) return;
+    try {
+      if (!params.id) return;
 
-			const response = await ProfileService.getProfile(params.id);
+      const response = await ProfileService.getProfile(params.id);
 
-			if (response.result) {
-				setUser(response.data);
-			} else {
-				setUser(null);
-				console.log(response.message);
-			}
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setFetching(false);
-		}
-	}
+      if (response.result) {
+        setUser(response.data);
+      } else {
+        setUser(null);
+      }
+    } catch (error) {
+      console.error('error getting user', error);
+    } finally {
+      setFetching(false);
+    }
+  }
 
-	return (
-		<Switch>
-			<Case condition={fetching}>
-				<Container>
-					<Spinner />
-				</Container>
-			</Case>
+  return (
+    <Switch>
+      <Case condition={fetching}>
+        <Container>
+          <Spinner />
+        </Container>
+      </Case>
 
-			<Case condition={Boolean(user)}>
-				<h1 className="text-3xl font-bold text-center m-2">Profile of {user?.username}</h1>
-				<Divider />
-				<div className="flex flex-col gap-4">
-					<h2 className="text-2xl font-bold">Characters</h2>
-					<div className="flex flex-wrap flex-row gap-4">
-						{
+      <Case condition={Boolean(user)}>
+        <h1 className="text-3xl font-bold text-center m-2">Profile of {user?.username}</h1>
+        <Divider />
+        <div className="flex flex-col gap-4">
+          <h2 className="text-2xl font-bold">Characters</h2>
+          <div className="grid gap-2 justify-items-center" style={{ gridTemplateColumns: "repeat(auto-fill , minmax(200px, 1fr))" }}>
+            {
 
-							user?.characters_eldenRing.map((character, index) => {
-								return <CardCharacterList key={index} character={character} />
-							})
-						}
-					</div>
-				</div>
-			</Case>
+              user?.characters_eldenRing.map((character, index) => {
+                return <CardCharacterList key={index} character={character} />
+              })
+            }
+          </div>
+        </div>
+      </Case>
 
-			<Default>
-				<Container>
-					<h1 className="text-3xl font-bold">User not found</h1>
-				</Container>
-			</Default>
-		</Switch>
-	)
+      <Default>
+        <Container>
+          <h1 className="text-3xl font-bold">User not found</h1>
+        </Container>
+      </Default>
+    </Switch>
+  )
 }
 
 function Container({ children }: { children: React.ReactNode }) {
-	return (
-		<article className="flex flex-col justify-center items-center">
-			{children}
-		</article>
-	)
+  return (
+    <article className="flex flex-col justify-center items-center">
+      {children}
+    </article>
+  )
 }

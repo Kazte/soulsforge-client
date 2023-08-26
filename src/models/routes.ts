@@ -1,15 +1,14 @@
 export const PublicRoutes = {
-	LOGIN: 'login',
-	REGISTER: 'register',
-	CHARACTER: 'character',
-	ELDEN_RING: 'elden-ring',
-	PROFILE: 'profile',
-	HOME: '/',
+  LOGIN: 'login',
+  REGISTER: 'register',
+  CHARACTER: 'character',
+  ELDEN_RING: 'elden-ring',
+  PROFILE: 'profile',
+  HOME: '/',
 }
 
 export const PrivateRoutes = {
-	PRIVATE: 'private',
-	LOGOUT: 'logout',
-	CHARACTER_EDIT: 'character/edit',
-	CHARACTER_DELETE: 'character/delete',
+  PRIVATE: 'private',
+  LOGOUT: 'logout',
+  CHARACTER_CREATE: 'create',
 }

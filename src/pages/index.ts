@@ -1,5 +1,8 @@
+export { default as CreatePage } from "./characters/CreatePage";
+export * from "./characters/elden-ring/EldenRingCharEditPage";
 export { default as EldenRingCharPage } from "./characters/elden-ring/EldenRingCharPage";
 export { default as EldenRingPage } from "./characters/elden-ring/EldenRingPage";
+export { default as EldenRingCharDetail } from "./characters/elden-ring/components/EldenRingCharDetail";
 export { default as RoutesWithNotFound } from "./common/RoutesWithNotFound";
 export * from "./index";
 export { default as PrivatePageWrapper } from "./private/PrivatePageWrapper";

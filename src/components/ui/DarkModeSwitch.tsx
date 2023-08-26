@@ -6,22 +6,22 @@ import { toggleDarkMode } from "../../redux/states/page";
 
 export default function DarkModeSwitch(props: SwitchProps) {
 
-	const pageState = useSelector((state: AppStore) => state.page);
-	const dispatch = useDispatch();
+  const pageState = useSelector((state: AppStore) => state.page);
+  const dispatch = useDispatch();
 
-	const handleDarkMode = () => {
-		dispatch(toggleDarkMode());
-	}
+  const handleDarkMode = () => {
+    dispatch(toggleDarkMode());
+  }
 
-	return (
-		<Switch
-			{...props}
-			defaultSelected={!pageState.darkMode}
-			size="sm"
-			color="success"
-			startContent={<SunIcon />}
-			endContent={<MoonIcon />}
-			onChange={handleDarkMode}
-		/>
-	);
+  return (
+    <Switch
+      {...props}
+      defaultSelected={!pageState.darkMode}
+      size="sm"
+      color="primary"
+      startContent={<SunIcon />}
+      endContent={<MoonIcon />}
+      onChange={handleDarkMode}
+    />
+  );
 }
