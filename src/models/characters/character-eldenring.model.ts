@@ -349,11 +349,9 @@ const defaultEldenCharacter = {
     muscle: CharacterEldenRing_Muscle.Standard,
   },
   game: CharacterGame.EldenRing,
-  _id: '',
   name: '',
   description: '',
-  imageUrl: '',
-  user: ''
+  imageUrl: ''
 };
 
 export default defaultEldenCharacter;
