@@ -2,11 +2,11 @@ import { User } from "../user.model";
 
 
 export interface CharacterBase {
-  _id: string,
+  _id?: string,
   name: string,
   description: string,
   imageUrl: string,
-  user: User | string,
+  user?: User | string,
   game: CharacterGame,
 }
 
