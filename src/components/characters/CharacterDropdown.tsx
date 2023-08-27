@@ -13,8 +13,6 @@ export default function CharacterDropdown({ value, labelsMap, editing = false, o
   const [selectedValue, setSelectedValue] = useState<string>(value);
 
   const handleOnChange = (v: ChangeEvent<HTMLSelectElement>) => {
-    console.log(v.target.value);
-
     setSelectedValue(v.target.value);
     onChange(v.target.value);
   }
