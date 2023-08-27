@@ -1,1 +1,1 @@
-export const API_BASE_URL: string = import.meta.env.VITE_BASE_API_URL;
+export const API_BASE_URL: string = import.meta.env.VITE_REACT_APP_BASE_URL;
