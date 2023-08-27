@@ -10,9 +10,11 @@ interface Props {
 }
 
 export default function CharacterDropdown({ value, labelsMap, editing = false, onChange }: Props) {
-  const [selectedValue, setSelectedValue] = useState<string>("");
+  const [selectedValue, setSelectedValue] = useState<string>(value);
 
   const handleOnChange = (v: ChangeEvent<HTMLSelectElement>) => {
+    console.log(v.target.value);
+
     setSelectedValue(v.target.value);
     onChange(v.target.value);
   }
