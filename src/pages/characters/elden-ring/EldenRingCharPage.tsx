@@ -80,6 +80,10 @@ export default function EldenRingCharPage() {
     try {
       setSaving(true);
 
+      if (!eldenChar._id) {
+        throw new Error('Character not found');
+      }
+
       const response = await EldenRingService.updateCharacter(eldenChar._id, eldenChar);
 
       if (response.result) {
@@ -109,6 +113,10 @@ export default function EldenRingCharPage() {
 
       // wait 4 seconds
       await new Promise(resolve => setTimeout(resolve, 4000));
+
+      if (!eldenChar._id) {
+        throw new Error('Character not found');
+      }
 
       const response = await EldenRingService.deleteCharacter(eldenChar._id);
 
