@@ -1,10 +1,10 @@
-import { Spinner, Divider, Skeleton, Button, ButtonGroup, Textarea, Input, Modal, useDisclosure, ModalContent, ModalHeader, ModalFooter } from "@nextui-org/react"
+import { Spinner, Divider, Skeleton, Button, Textarea, Input, Modal, useDisclosure, ModalContent, ModalHeader, ModalFooter } from "@nextui-org/react"
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
-import { useParams, Link, Navigate, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import KLink from "../../../components/ui/KLink"
 import { CharacterEldenRing } from "../../../models/characters/character-eldenring.model"
-import { PublicRoutes, PrivateRoutes } from "../../../models/routes"
+import { PublicRoutes } from "../../../models/routes"
 import { AppStore } from "../../../redux/store"
 import { EldenRingService } from "../../../services/characters/elden-ring.service"
 import { KButton } from "../../../components/ui/KButton"
@@ -12,6 +12,7 @@ import EldenRingCharDetail from "./components/EldenRingCharDetail"
 import { toast } from 'react-toastify'
 import { Case, Default, Switch } from "../../../ui"
 import { HeartIcon } from "../../../icons"
+import { User } from "../../../models/user.model"
 
 export default function EldenRingCharPage() {
   const params = useParams()
@@ -42,6 +43,7 @@ export default function EldenRingCharPage() {
       return;
 
     getCharacter(params.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id])
 
   const getCharacter = async (id: string) => {
@@ -292,7 +294,7 @@ export default function EldenRingCharPage() {
                   </p>
                 </Skeleton>
                 <p className="self-end mx-2">
-                  <strong>Created by:</strong> <KLink to={`/${PublicRoutes.PROFILE}/${eldenChar?.user._id}`}>{eldenChar?.user.username}</KLink>
+                  <strong>Created by:</strong> <KLink to={`/${PublicRoutes.PROFILE}/${(eldenChar?.user as User)._id}`}>{(eldenChar?.user as User).username}</KLink>
                 </p>
               </picture>
             </Default>

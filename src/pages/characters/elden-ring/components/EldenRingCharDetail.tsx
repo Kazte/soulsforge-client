@@ -3,7 +3,7 @@ import { Color } from "../../../../models/characters/color.model";
 import CharacterLabel from "../../../../components/characters/CharacterLabel";
 import CharacterSection from "../../../../components/characters/CharacterSection";
 import CharacterSectionContainer from "../../../../components/characters/CharacterSectionContainer";
-import { CharacterEldenRing, CharacterEldenRing_AgeKeys, CharacterEldenRing_BodyTypeKeys, CharacterEldenRing_Muscle, CharacterEldenRing_MuscleKeys } from "../../../../models/characters/character-eldenring.model";
+import { CharacterEldenRing, CharacterEldenRing_AgeKeys, CharacterEldenRing_BodyTypeKeys, CharacterEldenRing_MuscleKeys } from "../../../../models/characters/character-eldenring.model";
 import CharacterCheckbox from "../../../../components/characters/CharacterCheckbox";
 import CharacterDropdown from "../../../../components/characters/CharacterDropdown";
 
@@ -25,7 +25,8 @@ export default function EldenRingCharDetail({ eldenChar, editing: isEditing = fa
 
     const newChar = { ...eldenChar };
 
-    let current = newChar;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let current: any = newChar;
 
     for (let i = 0;i < path.length;i++) {
       const p = path[i];

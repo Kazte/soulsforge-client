@@ -1,4 +1,3 @@
-import { CharacterEldenRing } from './character-eldenring.model';
 import { CharacterBase, CharacterGame } from './character-base.model';
 import { Color, defaultColor } from './color.model';
 export interface CharacterEldenRing extends CharacterBase {
@@ -177,7 +176,7 @@ export const CharacterEldenRing_MuscleKeys = Object.values(CharacterEldenRing_Mu
 
 
 
-const defaultEldenCharacter: CharacterEldenRing = {
+const defaultEldenCharacter = {
   base: {
     bodyType: CharacterEldenRing_BodyType.TypeA,
     age: CharacterEldenRing_Age.Mature,
@@ -350,6 +349,11 @@ const defaultEldenCharacter: CharacterEldenRing = {
     muscle: CharacterEldenRing_Muscle.Standard,
   },
   game: CharacterGame.EldenRing,
+  _id: '',
+  name: '',
+  description: '',
+  imageUrl: '',
+  user: ''
 };
 
 export default defaultEldenCharacter;

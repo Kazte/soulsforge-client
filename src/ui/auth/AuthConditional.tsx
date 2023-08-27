@@ -31,5 +31,5 @@ export default function AuthVerifier({ children }: Props) {
     }
   }
 
-  return children
+  return <>{children}</>
 }

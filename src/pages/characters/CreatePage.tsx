@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { CharacterGame, CharacterGameKeys } from "../../models/characters/character-base.model"
 import { Button, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu, Input, Textarea } from "@nextui-org/react"
 import { KButton } from "../../components/ui/KButton"

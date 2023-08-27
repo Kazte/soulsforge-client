@@ -1,16 +1,16 @@
 import { Select, SelectItem } from "@nextui-org/react";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Case, Default, Switch } from "../../ui";
 
 interface Props {
-  value?: string
+  value: string
   labelsMap: string[]
   editing: boolean
   onChange: (value: string) => void
 }
 
 export default function CharacterDropdown({ value, labelsMap, editing = false, onChange }: Props) {
-  const [selectedValue, setSelectedValue] = useState<string>(value ?? labelsMap[0]);
+  const [selectedValue, setSelectedValue] = useState<string>("");
 
   const handleOnChange = (v: ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(v.target.value);

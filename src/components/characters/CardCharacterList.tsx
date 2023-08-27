@@ -1,8 +1,9 @@
-import { Card, CardBody, CardFooter, CardHeader, Chip, Divider, Image, Button, Skeleton } from "@nextui-org/react"
+import { Card, CardBody, CardFooter, CardHeader, Divider, Image, Skeleton } from "@nextui-org/react"
 import { CharacterBase } from "../../models/characters/character-base.model"
 import { useNavigate } from "react-router-dom"
 import { PublicRoutes } from "../../models/routes"
 import { useState } from "react"
+import { User } from "../../models/user.model"
 
 interface Props {
   character: CharacterBase
@@ -44,33 +45,11 @@ export default function CardCharacterList({ character, showCreator = false }: Pr
           <>
             <Divider />
             <CardFooter className="flex-col items-start">
-              <p className="text-default-500">Created by: {character.user.username}</p>
+              <p className="text-default-500">Created by: {(character.user as User).username}</p>
             </CardFooter>
           </>
         )
       }
     </Card>
-  )
-
-
-  return (
-    <Card shadow="sm" className="max-w-[400px] min-w-[200px] hover:scale-105 transition duration-300 ease-in-out cursor-pointer" isPressable disableRipple onPress={handleClick}>
-      <Chip color="primary" className="m-2 self-end">
-        {character.game}
-      </Chip>
-      <CardHeader>
-        {character.name}
-      </CardHeader>
-      <Divider />
-      <CardBody>
-        {
-          character._id
-        }
-      </CardBody>
-      <Divider />
-      <CardFooter>
-        <small>Created by: {character.user.username}</small>
-      </CardFooter>
-    </Card >
   )
 }
