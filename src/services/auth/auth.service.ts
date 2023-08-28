@@ -46,7 +46,6 @@ class AuthService implements AuthRepository {
   }
 
   async verify(token: string): Promise<AuthResponse> {
-    console.log(baseUrlAuth);
     const response = await fetch(`${baseUrlAuth}/verify`, {
       method: 'POST',
       headers: {

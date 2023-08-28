@@ -35,9 +35,6 @@ export default function CreatePage() {
       description: description,
       imageUrl: imageUrl
     }
-
-    console.log(char);
-
     setEldenChar(char);
   }
 

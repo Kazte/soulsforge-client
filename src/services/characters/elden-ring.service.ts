@@ -49,8 +49,6 @@ export const EldenRingService = {
       throw new Error('User not found');
     }
 
-    console.log(character);
-
     const token = JSON.parse(user).token;
     const response = await fetch(baseUrl, {
       method: 'POST',

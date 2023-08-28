@@ -23,7 +23,7 @@ export default function HomePage() {
         setChars(data)
       }
     } catch (error) {
-      console.log(error)
+      console.error('error getting elden chars', error)
     }
     setLoading(false)
   }
