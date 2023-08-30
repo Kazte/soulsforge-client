@@ -11,6 +11,9 @@
   }
 }
 
+body {
+  background-color: "#18181b"
+}
 
 #root {
   scrollbar-gutter: stable;
