@@ -12,7 +12,6 @@ import { useState } from "react";
 export default function Nav() {
 
   const userState = useSelector((store: AppStore) => store.user)
-  const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
 
   const links: Map<string, Links> = new Map([
     ['home', { name: 'Home', to: PublicRoutes.HOME }],
@@ -26,7 +25,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className={`hidden sm:flex flex-row items-center gap-2 ${isNavOpen ? 'block' : 'hidden'}`}>
+      <nav className={`hidden sm:flex flex-row items-center gap-2`}>
         <Switch>
           <Case condition={Boolean(userState.username)}>
             <>
