@@ -34,7 +34,7 @@ export default function CardCharacterList({ character, showCreator = false }: Pr
         <Skeleton isLoaded={loading}>
           <Image
             alt="Card background"
-            className="rounded-none"
+            className="rounded-none object-cover"
             src={character.imageUrl}
             onLoad={() => setLoading(true)}
           />
