@@ -6,66 +6,72 @@ import { AppStore } from "../../redux/store";
 import { Case, Default, Switch } from "..";
 import DarkModeSwitch from "../../components/ui/DarkModeSwitch";
 import { Divider } from "@nextui-org/react";
+import { useState } from "react";
+
 
 export default function Nav() {
 
   const userState = useSelector((store: AppStore) => store.user)
+  const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
 
+  const links: Map<string, Links> = new Map([
+    ['home', { name: 'Home', to: PublicRoutes.HOME }],
+    ['register', { name: 'Register', to: PublicRoutes.REGISTER }],
+    ['login', { name: 'Login', to: PublicRoutes.LOGIN }],
+    ['profile', { name: 'Profile', to: `${PublicRoutes.PROFILE}/${userState.id}` }],
+    ['character-create', { name: 'Create', to: PrivateRoutes.CHARACTER_CREATE }],
+    ['logout', { name: 'Logout', to: PrivateRoutes.LOGOUT }]
+  ])
 
-
-  const baseStyle = "text-foreground text-lg border-b-2 hover:border-foreground transition-colors duration-300";
 
   return (
-    <nav className="hidden sm:flex flex-row items-center gap-2 ">
-      <Switch>
-        <Case condition={Boolean(userState.username)}>
-          <>
-            <NavLink
-              className={
-                ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
-              }
-              to={PublicRoutes.HOME}>Home</NavLink>
-            <NavLink
-              className={
-                ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
-              }
-              to={`${PublicRoutes.PROFILE}/${userState.id}`}>Profile</NavLink>
-            <NavLink
-              className={
-                ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
-              }
-              to={`${PrivateRoutes.CHARACTER_CREATE}`}>Create</NavLink>
-            <Divider className="h-8" orientation="vertical" />
-            <NavLink
-              className={
-                ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
-              }
-              to={PrivateRoutes.LOGOUT}>Logout</NavLink>
-          </>
-        </Case>
+    <>
+      <nav className={`hidden sm:flex flex-row items-center gap-2 ${isNavOpen ? 'block' : 'hidden'}`}>
+        <Switch>
+          <Case condition={Boolean(userState.username)}>
+            <>
+              <NL data={links.get('home')!} />
+              <NL data={links.get('profile')!} />
+              <NL data={links.get('character-create')!} />
 
-        <Default>
-          <>
-            <NavLink
-              className={
-                ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
-              }
-              to={PublicRoutes.HOME}>Home</NavLink>
-            <NavLink
-              className={
-                ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
-              }
-              to={PublicRoutes.LOGIN}>Login</NavLink>
-            <NavLink
-              className={
-                ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
-              }
-              to={PublicRoutes.REGISTER}>Register</NavLink>
-          </>
-        </Default>
-      </Switch>
+              <Divider className="h-8" orientation="vertical" />
+              <NL data={links.get('logout')!} />
+            </>
+          </Case>
 
-      <DarkModeSwitch className="ml-6 justify-self-end" />
-    </nav>
+          <Default>
+            <>
+              <NL data={links.get('home')!} />
+              <NL data={links.get('register')!} />
+              <NL data={links.get('login')!} />
+            </>
+          </Default>
+        </Switch>
+
+        <DarkModeSwitch className="ml-6 justify-self-end" />
+      </nav >
+    </>
+  )
+}
+
+interface NLProps {
+  data: Links
+}
+
+type Links = {
+  name: string,
+  to: string
+}
+
+function NL({ data }: NLProps) {
+  const baseStyle = "text-foreground text-lg border-b-2 hover:border-foreground transition-colors duration-300";
+  return (
+    <NavLink
+      className={
+        ({ isActive }) => isActive ? baseStyle + ' border-foreground' : baseStyle + ' border-transparent'
+      }
+      to={data.to}>
+      {data.name}
+    </NavLink>
   )
 }
