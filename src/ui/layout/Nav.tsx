@@ -6,7 +6,6 @@ import { AppStore } from "../../redux/store";
 import { Case, Default, Switch } from "..";
 import DarkModeSwitch from "../../components/ui/DarkModeSwitch";
 import { Divider } from "@nextui-org/react";
-import { useState } from "react";
 
 
 export default function Nav() {
