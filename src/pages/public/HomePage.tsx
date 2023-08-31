@@ -30,13 +30,6 @@ export default function HomePage() {
     setLoading(false)
   }
 
-
-  if (loading)
-    return
-
-  if (chars.length <= 0)
-    return
-
   return (
     <SEO title="SoulsForge">
       <Switch>
