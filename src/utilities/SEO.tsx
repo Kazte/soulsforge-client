@@ -11,7 +11,9 @@ export default function SEO({ children, title }: Props) {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      {children}
+      <>
+        {children}
+      </>
     </>
   )
 }
