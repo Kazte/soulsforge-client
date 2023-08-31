@@ -5,6 +5,7 @@ import CardCharacterList from "../../../components/characters/CardCharacterList"
 import { ProfileService } from "../../../services/profile/profile.service";
 import { User } from "../../../models/user.model";
 import { Case, Default, Switch } from "../../../ui";
+import SEO from "../../../utilities/SEO";
 
 export default function ProfilePage() {
   const params = useParams()
@@ -44,35 +45,37 @@ export default function ProfilePage() {
   }
 
   return (
-    <Switch>
-      <Case condition={fetching}>
-        <Container>
-          <Spinner />
-        </Container>
-      </Case>
+    <SEO title={`${user?.username} - SoulsForge`}>
+      <Switch>
+        <Case condition={fetching}>
+          <Container>
+            <Spinner />
+          </Container>
+        </Case>
 
-      <Case condition={Boolean(user)}>
-        <h1 className="text-3xl font-bold text-center m-2">Profile of {user?.username}</h1>
-        <Divider />
-        <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-bold">Characters</h2>
-          <div className="grid gap-2 justify-items-center" style={{ gridTemplateColumns: "repeat(auto-fill , minmax(200px, 1fr))" }}>
-            {
+        <Case condition={Boolean(user)}>
+          <h1 className="text-3xl font-bold text-center m-2">Profile of {user?.username}</h1>
+          <Divider />
+          <div className="flex flex-col gap-4">
+            <h2 className="text-2xl font-bold">Characters</h2>
+            <div className="grid gap-2 justify-items-center" style={{ gridTemplateColumns: "repeat(auto-fill , minmax(200px, 1fr))" }}>
+              {
 
-              user?.characters_eldenRing.map((character, index) => {
-                return <CardCharacterList key={index} character={character} />
-              })
-            }
+                user?.characters_eldenRing.map((character, index) => {
+                  return <CardCharacterList key={index} character={character} />
+                })
+              }
+            </div>
           </div>
-        </div>
-      </Case>
+        </Case>
 
-      <Default>
-        <Container>
-          <h1 className="text-3xl font-bold">User not found</h1>
-        </Container>
-      </Default>
-    </Switch>
+        <Default>
+          <Container>
+            <h1 className="text-3xl font-bold">User not found</h1>
+          </Container>
+        </Default>
+      </Switch>
+    </SEO>
   )
 }
 

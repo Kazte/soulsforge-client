@@ -37,7 +37,7 @@ function App() {
               <Route path={`/${PublicRoutes.REGISTER}`} element={<RegisterPage />} />
               <Route path={`/${PublicRoutes.PROFILE}/:id`} element={<ProfilePage />} />
 
-              <Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}`} element={<EldenRingPage />} />
+              {/* <Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}`} element={<EldenRingPage />} /> */}
               <Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}/:id`} element={<EldenRingCharPage />} />
 
 

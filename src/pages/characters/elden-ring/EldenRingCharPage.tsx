@@ -13,6 +13,7 @@ import { toast } from 'react-toastify'
 import { Case, Default, Switch } from "../../../ui"
 import { HeartIcon } from "../../../icons"
 import { User } from "../../../models/user.model"
+import SEO from "../../../utilities/SEO"
 
 export default function EldenRingCharPage() {
   const params = useParams()
@@ -136,17 +137,21 @@ export default function EldenRingCharPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   if (loading)
-    return <article className="flex flex-col gap-4 container m-auto">
-      <Spinner />
-    </article>
+    return <SEO title={`Loading - SoulsForge`}>
+      <article className="flex flex-col gap-4 container m-auto">
+        <Spinner />
+      </article>
+    </SEO >
 
   if (!eldenChar)
-    return <article className="flex flex-col gap-4 container m-auto">
-      <h1 className="text-4xl text-center">Character not found</h1>
-    </article>
+    return <SEO title={`Not Found - SoulsForge`}>
+      <article className="flex flex-col gap-4 container m-auto">
+        <h1 className="text-4xl text-center">Character not found</h1>
+      </article>
+    </SEO >
 
   return (
-    <>
+    <SEO title={`${eldenChar?.name} - SoulsForge`}>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose => (
@@ -317,6 +322,6 @@ export default function EldenRingCharPage() {
           <EldenRingCharDetail eldenChar={eldenChar} editing={isEditing} onChange={handleChange} />
         </section>
       </article>
-    </>
+    </SEO>
   )
 }

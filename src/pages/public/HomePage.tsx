@@ -3,6 +3,8 @@ import { CharacterEldenRing } from "../../models/characters/character-eldenring.
 import { Spinner } from "@nextui-org/react"
 import { EldenRingService } from "../../services/characters/elden-ring.service"
 import CardCharacterList from "../../components/characters/CardCharacterList"
+import { Case, Default, Switch } from "../../ui"
+import SEO from "../../utilities/SEO"
 
 export default function HomePage() {
 
@@ -30,22 +32,34 @@ export default function HomePage() {
 
 
   if (loading)
-    return <div className="flex flex-row justify-center items-center flex-grow">
-      <Spinner />
-    </div>
+    return
 
   if (chars.length <= 0)
-    return <div className="flex flex-row justify-center items-center flex-grow">
-      <h1 className="text-4xl text-center">No characters found</h1>
-    </div>
+    return
 
   return (
-    <div className="grid gap-2 justify-items-center" style={{ gridTemplateColumns: "repeat(auto-fill , minmax(200px, 1fr))" }}>
-      {
-        chars.map((char, index) => {
-          return <CardCharacterList key={index} character={char} showCreator />
-        })
-      }
-    </div>
+    <SEO title="SoulsForge">
+      <Switch>
+        <Case condition={loading}>
+          <div className="flex flex-row justify-center items-center flex-grow">
+            <Spinner />
+          </div>
+        </Case>
+        <Case condition={chars.length <= 0}>
+          <div className="flex flex-row justify-center items-center flex-grow">
+            <h1 className="text-4xl text-center">No characters found</h1>
+          </div>
+        </Case>
+        <Default>
+          <div className="grid gap-2 justify-items-center" style={{ gridTemplateColumns: "repeat(auto-fill , minmax(200px, 1fr))" }}>
+            {
+              chars.map((char, index) => {
+                return <CardCharacterList key={index} character={char} showCreator />
+              })
+            }
+          </div>
+        </Default>
+      </Switch>
+    </SEO>
   )
 }

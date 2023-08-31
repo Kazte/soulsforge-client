@@ -11,6 +11,7 @@ import { useSelector } from "react-redux"
 import { AppStore } from "../../redux/store"
 import { useNavigate } from "react-router-dom"
 import { PublicRoutes } from "../../models/routes"
+import SEO from "../../utilities/SEO"
 
 
 export default function CreatePage() {
@@ -61,84 +62,86 @@ export default function CreatePage() {
 
 
   return (
-    <article className='flex flex-col items-center justify-center gap-2 mx-auto w-full h-full container'>
-      <section className="flex flex-col justify-center items-start gap-2 w-full">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 w-full">
-          <Dropdown
-            classNames={
-              {
-                base: 'w-full',
-              }
-            }
-          >
-            <DropdownTrigger>
-              <Button variant="bordered">
+    <SEO title="Create - SoulsForge">
+      <article className='flex flex-col items-center justify-center gap-2 mx-auto w-full h-full container'>
+        <section className="flex flex-col justify-center items-start gap-2 w-full">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-2 w-full">
+            <Dropdown
+              classNames={
                 {
-                  game
+                  base: 'w-full',
                 }
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu
-              aria-label="Dropdown game"
-              disabledKeys={[CharacterGameKeys[1], CharacterGameKeys[2], CharacterGameKeys[3], CharacterGameKeys[4]]}
+              }
             >
-              <DropdownItem key={CharacterGameKeys[0]} onPress={() => setGame(CharacterGame.EldenRing)}>{CharacterGameKeys[0]}</DropdownItem>
-              <DropdownItem key={CharacterGameKeys[1]} onPress={() => setGame(CharacterGame.DarkSouls3)}>{CharacterGameKeys[1]}</DropdownItem>
-              <DropdownItem key={CharacterGameKeys[2]} onPress={() => setGame(CharacterGame.DarkSouls2)}>{CharacterGameKeys[2]}</DropdownItem>
-              <DropdownItem key={CharacterGameKeys[3]} onPress={() => setGame(CharacterGame.DarkSouls)}>{CharacterGameKeys[3]}</DropdownItem>
-              <DropdownItem key={CharacterGameKeys[4]} onPress={() => setGame(CharacterGame.Bloodborne)}>{CharacterGameKeys[4]}</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <Input
-            label='Character Name'
-            className="flex-4"
+              <DropdownTrigger>
+                <Button variant="bordered">
+                  {
+                    game
+                  }
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Dropdown game"
+                disabledKeys={[CharacterGameKeys[1], CharacterGameKeys[2], CharacterGameKeys[3], CharacterGameKeys[4]]}
+              >
+                <DropdownItem key={CharacterGameKeys[0]} onPress={() => setGame(CharacterGame.EldenRing)}>{CharacterGameKeys[0]}</DropdownItem>
+                <DropdownItem key={CharacterGameKeys[1]} onPress={() => setGame(CharacterGame.DarkSouls3)}>{CharacterGameKeys[1]}</DropdownItem>
+                <DropdownItem key={CharacterGameKeys[2]} onPress={() => setGame(CharacterGame.DarkSouls2)}>{CharacterGameKeys[2]}</DropdownItem>
+                <DropdownItem key={CharacterGameKeys[3]} onPress={() => setGame(CharacterGame.DarkSouls)}>{CharacterGameKeys[3]}</DropdownItem>
+                <DropdownItem key={CharacterGameKeys[4]} onPress={() => setGame(CharacterGame.Bloodborne)}>{CharacterGameKeys[4]}</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+            <Input
+              label='Character Name'
+              className="flex-4"
+              size="sm"
+              value={name}
+              onValueChange={setName}
+              onBlur={() => { handleChange(eldenChar) }}
+            />
+            <Input
+              label='Image URL'
+              className="flex-3"
+              size="sm"
+              value={imageUrl}
+              onValueChange={setImageUrl}
+              onBlur={() => { handleChange(eldenChar) }}
+            />
+          </div>
+
+          <Textarea
+            label='Description'
+            maxRows={3}
             size="sm"
-            value={name}
-            onValueChange={setName}
+            value={description}
+            onValueChange={setDescription}
             onBlur={() => { handleChange(eldenChar) }}
           />
-          <Input
-            label='Image URL'
-            className="flex-3"
-            size="sm"
-            value={imageUrl}
-            onValueChange={setImageUrl}
-            onBlur={() => { handleChange(eldenChar) }}
-          />
-        </div>
+        </section>
 
-        <Textarea
-          label='Description'
-          maxRows={3}
-          size="sm"
-          value={description}
-          onValueChange={setDescription}
-          onBlur={() => { handleChange(eldenChar) }}
-        />
-      </section>
+        <section className="flex flex-wrap gap-2">
+          <Switch>
+            <Case condition={game === CharacterGame.EldenRing}>
+              <EldenRingCharDetail eldenChar={eldenChar} editing={true} onChange={handleChange} />
+            </Case>
+            <Default>
+              <p>Select a game!</p>
+            </Default>
+          </Switch>
+        </section>
 
-      <section className="flex flex-wrap gap-2">
-        <Switch>
-          <Case condition={game === CharacterGame.EldenRing}>
-            <EldenRingCharDetail eldenChar={eldenChar} editing={true} onChange={handleChange} />
-          </Case>
-          <Default>
-            <p>Select a game!</p>
-          </Default>
-        </Switch>
-      </section>
+        <section className="w-full">
+          <div className="flex flex-row  justify-center items-end gap-2">
+            <KButton color="success" onClick={handleCreateEdit} isLoading={saving}>
+              Save
+            </KButton>
+            <KButton color="danger" onClick={handleCancelEdit}>
+              Cancel
+            </KButton>
+          </div>
+        </section>
 
-      <section className="w-full">
-        <div className="flex flex-row  justify-center items-end gap-2">
-          <KButton color="success" onClick={handleCreateEdit} isLoading={saving}>
-            Save
-          </KButton>
-          <KButton color="danger" onClick={handleCancelEdit}>
-            Cancel
-          </KButton>
-        </div>
-      </section>
-
-    </article>
+      </article>
+    </SEO>
   )
 }
