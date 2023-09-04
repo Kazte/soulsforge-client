@@ -31,7 +31,7 @@ export default function Nav() {
       isBlurred
       isBordered
       onMenuOpenChange={setIsMenuOpen}
-      className="h-[4rem] flex justify-center items-center">
+      isMenuOpen={isMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
@@ -55,6 +55,9 @@ export default function Nav() {
             <NavbarItem>
               <NL data={links.get('character-create')!} />
             </NavbarItem>
+            <Button as={NavLink} to={links.get('logout')!.to}>
+              {links.get('logout')!.name}
+            </Button>
           </Case>
           <Default>
             <NavbarItem>
@@ -72,13 +75,6 @@ export default function Nav() {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden" justify="end">
-        <Switch>
-          <Case condition={Boolean(userState.username)}>
-            <Button as={NavLink} to={links.get('logout')!.to}>
-              {links.get('logout')!.name}
-            </Button>
-          </Case>
-        </Switch>
         <DarkModeSwitch />
       </NavbarContent>
 
@@ -94,6 +90,10 @@ export default function Nav() {
             <NavbarMenuItem>
               <NL onClick={() => setIsMenuOpen(false)} data={links.get('character-create')!} />
             </NavbarMenuItem>
+            <Divider />
+            <NavbarMenuItem>
+              <NL onClick={() => setIsMenuOpen(false)} data={links.get('logout')!} />
+            </NavbarMenuItem>
           </Case>
           <Default>
             <NavbarMenuItem>
@@ -108,36 +108,7 @@ export default function Nav() {
           </Default>
         </Switch>
       </NavbarMenu>
-    </Navbar>
-  )
-
-  return (
-    <>
-      <nav className={`hidden sm:flex flex-row items-center gap-2`}>
-        <Switch>
-          <Case condition={Boolean(userState.username)}>
-            <>
-              <NL data={links.get('home')!} />
-              <NL data={links.get('profile')!} />
-              <NL data={links.get('character-create')!} />
-
-              <Divider className="h-8" orientation="vertical" />
-              <NL data={links.get('logout')!} />
-            </>
-          </Case>
-
-          <Default>
-            <>
-              <NL data={links.get('home')!} />
-              <NL data={links.get('register')!} />
-              <NL data={links.get('login')!} />
-            </>
-          </Default>
-        </Switch>
-
-        <DarkModeSwitch className="ml-6 justify-self-end" />
-      </nav >
-    </>
+    </Navbar >
   )
 }
 
