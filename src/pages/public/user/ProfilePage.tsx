@@ -15,7 +15,7 @@ export default function ProfilePage() {
   const [fetching, setFetching] = useState(false);
 
   const userId = useMemo(() => {
-    return params.id;
+    return params.username;
   }, [params])
 
   useEffect(() => {
@@ -28,9 +28,9 @@ export default function ProfilePage() {
     setFetching(true);
 
     try {
-      if (!params.id) return;
+      if (!params.username) return;
 
-      const response = await ProfileService.getProfile(params.id);
+      const response = await ProfileService.getProfileByUsername(params.username);
 
       if (response.result) {
         setUser(response.data);

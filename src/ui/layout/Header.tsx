@@ -4,6 +4,11 @@ import Nav from "./Nav";
 import { PublicRoutes } from "../../models/routes";
 
 export default function Header() {
+
+  return (
+    <Nav />
+  )
+
   return (
     <header className=" h-[4rem] bg-content1 flex justify-center items-center">
       <div className="flex flex-row justify-around items-center p-2 w-full">

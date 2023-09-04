@@ -35,7 +35,7 @@ function App() {
               <Route path={`/${PublicRoutes.HOME}`} element={<HomePage />} />
               <Route path={`/${PublicRoutes.LOGIN}`} element={<LoginPage />} />
               <Route path={`/${PublicRoutes.REGISTER}`} element={<RegisterPage />} />
-              <Route path={`/${PublicRoutes.PROFILE}/:id`} element={<ProfilePage />} />
+              <Route path={`/${PublicRoutes.PROFILE}/:username`} element={<ProfilePage />} />
 
               {/* <Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}`} element={<EldenRingPage />} /> */}
               <Route path={`/${PublicRoutes.CHARACTER}/${PublicRoutes.ELDEN_RING}/:id`} element={<EldenRingCharPage />} />

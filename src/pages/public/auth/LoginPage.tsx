@@ -34,7 +34,7 @@ export default function LoginPage() {
           token: response.data.token
         }))
 
-        navigate(`/${PublicRoutes.PROFILE}/${response.data.user.id}`);
+        navigate(`/${PublicRoutes.PROFILE}/${response.data.user.username}`);
       } else {
         setError(response.message);
       }

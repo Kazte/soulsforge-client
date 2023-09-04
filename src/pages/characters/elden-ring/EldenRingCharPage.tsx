@@ -307,7 +307,7 @@ export default function EldenRingCharPage() {
                   </p>
                 </Skeleton>
                 <p className="self-end mx-2">
-                  <strong>Created by:</strong> <KLink to={`/${PublicRoutes.PROFILE}/${(eldenChar?.user as User)._id}`}>{(eldenChar?.user as User).username}</KLink>
+                  <strong>Created by:</strong> <KLink to={`/${PublicRoutes.PROFILE}/${(eldenChar?.user as User).username}`}>{(eldenChar?.user as User).username}</KLink>
                 </p>
               </picture>
             </Default>
