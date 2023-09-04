@@ -26,7 +26,12 @@ export default function Nav() {
   ])
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="h-[4rem] bg-content1 flex justify-center items-center">
+    <Navbar
+      shouldHideOnScroll
+      isBlurred
+      isBordered
+      onMenuOpenChange={setIsMenuOpen}
+      className="h-[4rem] flex justify-center items-center">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
